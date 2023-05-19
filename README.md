@@ -1,1 +1,1 @@
-# app_moviles
+# En este repositorio se aloja la aplicación móvil que será desarrollada para la asignatura de programación de aplicaciones móviles en Duoc UC
