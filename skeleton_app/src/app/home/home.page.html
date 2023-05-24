@@ -1,20 +1,54 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      SkeletonAPP
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
+  <ion-header class="ion-no-border">
+    <ion-title class="ion-padding ion-text-center">Bienvenido!</ion-title>
+    <ion-item lines="none">Usuario: Test</ion-item>
   </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-title class="ion-text-center ion-padding-bottom">
+    <h2>Información Adicional</h2>
+  </ion-title>
+  <form>
+    <ion-item lines="none" aria-expanded="inline" class="ion-padding-start">
+      <ion-label>Nombre</ion-label>
+      <ion-item lines="full">
+        <ion-input type="text" placeholder="Ingrese Nombre" required></ion-input>
+      </ion-item>
+    </ion-item>
+    <ion-item lines="none" aria-expanded="inline" class="ion-padding-start">
+      <ion-label>Apellido</ion-label>
+      <ion-item lines="full">
+        <ion-input type="text" placeholder="Ingrese Apellido" required></ion-input>
+      </ion-item>
+    </ion-item>
+    <ion-item lines="none" aria-expanded="inline" class="ion-padding-start">
+      <ion-label>Nivel Educación</ion-label>
+      <ion-item lines="full">
+        <ion-input type="text" placeholder="Ingrese Apellido" required></ion-input>
+      </ion-item>
+    </ion-item>
+    <ion-item lines="none" aria-expanded="inline" class="ion-padding-start">
+      <ion-label>Fecha Nacimiento</ion-label>
+      <ion-datetime-button datetime="datetime"></ion-datetime-button>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime id="datetime" [presentation]="'date'"></ion-datetime>
+        </ng-template>
+      </ion-modal>
+    </ion-item>
+    <ion-row class="ion-padding-top">
+      <ion-col class="ion-text-center">
+        <ion-button type="submit" class="ion-padding-end ion-margin-end" color="primary"
+          expand="inline">Limpiar</ion-button>
+        <ion-button type="submit" class="ion-padding-start ion-margin-start" color="primary"
+          expand="inline">Mostrar</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
 </ion-content>
