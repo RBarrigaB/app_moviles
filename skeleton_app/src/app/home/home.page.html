@@ -9,7 +9,7 @@
 <ion-content [fullscreen]="true">
   <ion-header class="ion-no-border">
     <ion-title class="ion-padding ion-text-center">Bienvenido!</ion-title>
-    <ion-item lines="none">Usuario: Test</ion-item>
+    <ion-item lines="none">Usuario: {{homeUser}}</ion-item>
   </ion-header>
   <ion-title class="ion-text-center ion-padding-bottom">
     <h2>Información Adicional</h2>
@@ -27,12 +27,16 @@
         <ion-input type="text" placeholder="Ingrese Apellido" required></ion-input>
       </ion-item>
     </ion-item>
-    <ion-item lines="none" aria-expanded="inline" class="ion-padding-start">
-      <ion-label>Nivel Educación</ion-label>
-      <ion-item lines="full">
-        <ion-input type="text" placeholder="Ingrese Apellido" required></ion-input>
+    <ion-list>
+      <ion-item lines="none" aria-expanded="inline" class="ion-padding-start">
+        <ion-label>Profesión</ion-label>
+        <ion-select placeholder="Profesión">
+          <ion-select-option value="apples">Básica</ion-select-option>
+          <ion-select-option value="oranges">Media</ion-select-option>
+          <ion-select-option value="bananas">Universitaria</ion-select-option>
+        </ion-select>
       </ion-item>
-    </ion-item>
+    </ion-list>
     <ion-item lines="none" aria-expanded="inline" class="ion-padding-start">
       <ion-label>Fecha Nacimiento</ion-label>
       <ion-datetime-button datetime="datetime"></ion-datetime-button>

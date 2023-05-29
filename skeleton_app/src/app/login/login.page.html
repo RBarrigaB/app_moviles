@@ -1,32 +1,46 @@
 <ion-header [translucent]="true">
-  <ion-toolbar color="primary">
-    <ion-title class="ion-text-center "><h1>SkeletonAPP</h1></ion-title>
+  <ion-toolbar color="primary ion-padding-top ion-padding-bottom">
+    <ion-title class="ion-text-center"><h1>SkeletonAPP</h1></ion-title>
     <ion-text>
-      <p class="small-text ion-text-center ion-padding-bottom ion-no-margin">Aquí comienza todo</p>
+      <p class="small-text ion-text-center">Aquí comienza todo</p>
     </ion-text>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form>
-    <ion-item lines="full">
-      <ion-input 
-      type="text" 
-      name="user" 
-      label="Usuario" 
-      labelPlacement="floating"
-      required></ion-input>
-    </ion-item>
-    <ion-item lines="full">
-      <ion-input type="password" name="password" label="Password" labelPlacement="floating" required></ion-input>
-    </ion-item>
-    <ion-row>
-      <ion-col>
-        <ion-button type="submit" color="success" expand="block">Ingresar</ion-button>
-        <ion-item>
-          <a [routerLink]="['/crear-cuenta']" class="small-text ion-text-center">Crea tu cuenta gratis</a>
-        </ion-item>
-      </ion-col>
-    </ion-row>
+  <form [formGroup]="loginForm">
+    <ion-list class="ion-padding-end ion-margin-end">
+      <ion-item lines="inset">
+        <ion-input
+        minlength="3"
+        maxlength="8" 
+        type="text" 
+        formControlName="user" 
+        label="Usuario" 
+        labelPlacement="floating"
+        pattern="^[a-zA-Z0-9_]+$"
+        required></ion-input>
+      </ion-item>
+      <ion-item lines="inset">
+        <ion-input
+        minlength="4"
+        maxlength="4" 
+        type="password" 
+        formControlName="password" 
+        label="Password" 
+        labelPlacement="floating"
+        pattern="^[0-9]{4}$"
+        required></ion-input>
+      </ion-item>
+      <ion-row>
+        <ion-col>
+          <ion-button type="submit" color="success" expand="block" class="ion-margin" (click)="login()">Ingresar</ion-button>
+          <ion-item lines="none">
+            <a [routerLink]="['/crear-cuenta']" class="small-text ion-text-center">Crea tu cuenta gratis</a>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-list>
+
   </form>
 </ion-content>
