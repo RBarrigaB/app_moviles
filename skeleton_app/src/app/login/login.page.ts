@@ -32,10 +32,10 @@ export class LoginPage implements OnInit {
 
     if (this.loginForm.invalid) {
       if (this.loginForm.get('user')?.invalid) {
-        mensaje = 'Nombre de usuario inválido. \nEl usuario debe tener entre 3 y 8 caracteres alfanuméricos'
+        mensaje = 'Nombre de usuario inválido. <br> El usuario debe tener entre 3 y 8 caracteres alfanuméricos'
       } else {
         if (this.loginForm.get('password')?.invalid) {
-          mensaje = 'Contraseña inválida. \nLa contraseña debe tener 4 dígitos'
+          mensaje = 'Contraseña inválida. <br> La contraseña debe tener 4 dígitos'
         }
       }
 
