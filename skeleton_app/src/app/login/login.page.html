@@ -1,13 +1,21 @@
-<ion-header [translucent]="true">
-  <ion-toolbar color="primary ion-padding-top ion-padding-bottom">
-    <ion-title class="ion-text-center"><h1>SkeletonAPP</h1></ion-title>
+<ion-header [translucent]="false">
+  <ion-toolbar color="ghost" class="ion-padding-top ion-padding-bottom">
+    <ion-row>
+      <ion-col>
+        <h1 class="ion-text-center ion-padding">PokeGhost APP</h1>
+      </ion-col>
+      <ion-col>
+        <ion-img
+        src="../../assets/images/haunter-logo.png"></ion-img>
+      </ion-col>
+    </ion-row>
     <ion-text>
-      <p class="small-text ion-text-center">Aquí comienza todo</p>
+      <p class="ion-text-center">Tu mundo de pokemon fantasma</p>
     </ion-text>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding-top">
   <form [formGroup]="loginForm">
     <ion-list class="ion-padding-end ion-margin-end">
       <ion-item lines="inset">
@@ -34,7 +42,7 @@
       </ion-item>
       <ion-row>
         <ion-col>
-          <ion-button type="submit" color="success" expand="block" class="ion-margin" (click)="login()">Ingresar</ion-button>
+          <ion-button type="submit" color="tertiary" expand="block" class="ion-margin" (click)="login()">Ingresar</ion-button>
           <ion-item lines="none">
             <a [routerLink]="['/crear-cuenta']" class="small-text ion-text-center">Crea tu cuenta gratis</a>
           </ion-item>

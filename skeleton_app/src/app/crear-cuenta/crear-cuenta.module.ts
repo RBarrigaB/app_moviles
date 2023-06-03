@@ -7,13 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { CrearCuentaPageRoutingModule } from './crear-cuenta-routing.module';
 
 import { CrearCuentaPage } from './crear-cuenta.page';
+import { HeaderComponent } from '../components/header/header.component';
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CrearCuentaPageRoutingModule
+    CrearCuentaPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [CrearCuentaPage]
 })
