@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { PokemonFantasmaDescPageRoutingModule } from './pokemon-fantasma-desc-routing.module';
 
 import { PokemonFantasmaDescPage } from './pokemon-fantasma-desc.page';
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PokemonFantasmaDescPageRoutingModule
+    PokemonFantasmaDescPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [PokemonFantasmaDescPage]
 })

@@ -1,5 +1,5 @@
 import { Component, Input, Output,EventEmitter, OnInit } from '@angular/core';
-import { AlertController, Animation, AnimationController } from '@ionic/angular';
+import { AlertController, Animation, AnimationController, NavController } from '@ionic/angular';
 import { DataLoginService } from '../servicios/data-login.service';
 import { Router } from '@angular/router';
 
@@ -16,28 +16,31 @@ export class HomePage implements OnInit {
   apellidoUsuario:string = '';
   educacionUsuario:string = '';
 
-  constructor(private dataLogin:DataLoginService, private animationCtrl: AnimationController
-    ,public alertController: AlertController, private router: Router, public tipoAccion: DataLoginService) {}
+  constructor(private dataLogin:DataLoginService
+    ,public alertController: AlertController, private router: Router, public tipoAccion: DataLoginService,
+    public navCtrl: NavController) {}
+
+    async alerta() {
+      const alert = await this.alertController.create({
+        header: 'Usuario no registrado',
+        message: 'Para ver este página debe estar registrado',
+        buttons: [
+          {
+            text: 'Aceptar',
+            handler: () => {
+              this.navCtrl.navigateRoot('login')
+            }
+          }]
+      });
+      await alert.present();
+    }
 
   ngOnInit() {
     this.homeUser = this.dataLogin.nombreUser;
-  }
-
-  delay(tiempo:number) {
-    return new Promise(val => setTimeout(val,tiempo))
-  }
-
-  animationElem() {
-    
-    const animation:Animation = this.animationCtrl.create()
-    .addElement(document.querySelectorAll('.elem-animado')!)
-    .duration(1000)
-    .iterations(1)
-    .fromTo('transform','translateX(0px)','translateX(100px)')
-
-    animation.play();
-    this.delay(1000).then(()=>{animation.stop()})
-
+    let infoUser = JSON.parse(localStorage.getItem('usuario')!);
+    if(JSON.stringify(infoUser) === '{}') {
+      this.alerta()
+    }
   }
 
   async infoUsuario(){
@@ -56,7 +59,6 @@ export class HomePage implements OnInit {
     if(pageName === '/editar-informacion') {
       this.tipoAccion.tipoAccion = 'editar'
     }
-    console.log(pageName)
     this.router.navigate([`${pageName}`]);
   }
 

@@ -1,13 +1,49 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>pokemon-fantasma-desc</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header></app-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">pokemon-fantasma-desc</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-infinite-scroll-content">
+  <ion-row>
+    <ion-col>
+      <h1 class="ion-padding-top ion-text-center text">Los pokemon fantasma</h1>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <div id="img-content">
+      <ion-img 
+      src="../../assets/images/fantasmas.png" ></ion-img>
+    </div>
+  </ion-row>
+<h2 class="ion-padding-top ion-padding-start ion-padding-end">Reseña de los pokemon fantasma</h2>
+<p class="ion-padding-top ion-padding-start ion-padding-end">Los pokemon tipo fantasma son uno de los 18 tipos elementales de pokemon que existen</p>
+<p class="ion-padding-top ion-padding-start ion-padding-end">Los Pokémon que pertenecen al tipo fantasma generalmente se relacionan con el terror, 
+  lo oscuro y el más allá. Suelen vivir en casas abandonadas, cementerios, torres fúnebres y lugares oscuros e inhabitados. 
+  Gran parte de estos Pokémon esbozan una sonrisa siniestra y tenebrosa. 
+  Otra característica de los Pokémon fantasma es que son extremadamente traviesos y 
+  les encanta jugarles bromas pesadas a los humanos y otros Pokémon. También les encanta ver la cara de miedo de las personas 
+  que invaden su territorio. Lo curioso de estos Pokémon es que cuanto más miedo se les tenga, estos lo absorberán 
+  y serán más fuertes. </p>
+<h2 class="ion-padding-top ion-padding-start ion-padding-end">Relaciones con otros tipos</h2>
+<ul>
+  <li class="ion-padding-top ion-padding-start ion-padding-end">
+    El tipo fantasma es fuerte contra el Tipo psíquico porque algunas personas le tienen un miedo psicológico a los fantasmas, 
+    como ocurre con el Tipo bicho y el Tipo siniestro.
+  </li>
+  <li class="ion-padding-top ion-padding-start ion-padding-end">
+    El hecho de que se suela representar a los fantasmas como seres incorpóreos (es decir, carentes de materia) 
+    es la razón por la cual son inmunes a los ataques de Tipo normal y Tipo lucha, 
+    y a su vez son los Pokémon fantasma incapaces de dañar a un Pokémon normal, 
+    curiosamente sí pueden dañar a los de tipo lucha.
+  </li>
+  <li class="ion-padding-top ion-padding-start ion-padding-end">
+    Antes de la sexta generación, si el tipo fantasma se combinaba con el Tipo siniestro, 
+    no tenía debilidades y era inmune a los tipos: psíquico, normal y lucha. 
+    Esto ya no ocurre debido al nuevo tipo introducido en los juegos de la sexta generación, el tipo hada.
+  </li>
+</ul>
+
+<ion-button class="ion-padding" color="tertiary" (click)="goToPage('/home')">
+  Volver
+</ion-button>
+
+
 </ion-content>
+<app-footer></app-footer>
