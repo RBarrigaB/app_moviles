@@ -1,6 +1,5 @@
-<ion-header [translucent]="true">
- <app-header></app-header>
-</ion-header>
+
+  <app-header></app-header>
 
 <ion-content [fullscreen]="true" class="ion-content-fullscreen">
   <ion-header class="ion-padding-bottom">
@@ -17,74 +16,28 @@
       </ion-row>
       <ion-row>
         <ion-col>
-          <h2 class="ion-text-center">Información Adicional</h2>
+          <h2 class="ion-text-center">¿Qué te gustaría hacer?</h2>
         </ion-col>
       </ion-row>
     </ion-grid>
   </ion-header>
-  <form>
-    <ion-grid>
-      <ion-row>
-        <ion-col class="ion-padding-start ion-margin-start elem-animado">
-          <ion-label>Nombre</ion-label>
-        </ion-col>
-        <ion-col>
-          <ion-input type="text" placeholder="Ingrese Nombre" [(ngModel)]="nombreUsuario" name="nombreUsuario" required></ion-input>
-        </ion-col>
+    <ion-row class="ion-padding ion-text-center">
+        <ion-button fill="outline" color="tertiary" (click)="goToPage('/editar-informacion')">
+          Editar mi información
+          <ion-icon slot="end" name="create" color="tertiary"></ion-icon>
+        </ion-button>
       </ion-row>
-      <ion-row>
-        <ion-col class="ion-padding-start ion-margin-start elem-animado">
-          <ion-label>Apellido</ion-label>
-        </ion-col>
-        <ion-col>
-          <ion-input type="text" placeholder="Ingrese Apellido" [(ngModel)]="apellidoUsuario" name="apellidoUsuario" required></ion-input>
-        </ion-col>
+      <ion-row class="ion-padding ion-text-center">
+        <ion-button color="tertiary" (click)="goToPage('/pokemon-fantasma-desc')">
+          <ion-icon name="logo-snapchat" slot="end"></ion-icon>
+          Ver información de pokemon fantasma
+        </ion-button>
       </ion-row>
-      <ion-row>
-        <ion-col class="ion-padding-start ion-margin-start">
-          <ion-label>Profesión</ion-label>
-        </ion-col>
-        <ion-col class="ion-padding-start">
-          <ion-select placeholder="Profesión" [(ngModel)]="educacionUsuario" name="educacionUsuario">
-            <ion-select-option value="basica">Básica</ion-select-option>
-            <ion-select-option value="media">Media</ion-select-option>
-            <ion-select-option value="universitaria">Universitaria</ion-select-option>
-          </ion-select>
-        </ion-col>
+      <ion-row class="ion-padding ion-text-center">
+        <ion-button color="tertiary" (click)="logout('/login')">
+          <ion-icon name="log-out-outline"></ion-icon>
+          Salir
+        </ion-button>
       </ion-row>
-      <ion-row>
-        <ion-col class="ion-padding-start ion-margin-start">
-          <ion-label>Fecha Nacimiento</ion-label>
-        </ion-col>
-        <ion-col class="">
-          <ion-row>
-            <ion-col>
-              <ion-datetime-button datetime="datetime" id="input_date"></ion-datetime-button>
-              <ion-modal [keepContentsMounted]="true">
-                <ng-template>
-                  <ion-datetime id="datetime" [presentation]="'date'"></ion-datetime>
-                </ng-template>
-              </ion-modal>
-            </ion-col>
-            <ion-col>
-              <ion-icon name="calendar-outline"></ion-icon>
-            </ion-col>
-          </ion-row>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-    <ion-row class="ion-padding-top">
-      <ion-col class="ion-text-center">
-        <ion-button type="submit" class="ion-padding-end ion-margin-end" color="primary"
-          expand="inline" (click)="animationElem()">Limpiar</ion-button>
-        <ion-button type="submit" class="ion-padding-start ion-margin-start" color="primary"
-          expand="inline" (click)="infoUsuario()">Mostrar</ion-button>
-      </ion-col>
-    </ion-row>
-  </form>
 </ion-content>
-<ion-footer [translucent]="true">
-  <ion-toolbar>
-    <h4>App desarrollada por Reinaldo Barriga</h4>
-  </ion-toolbar>
-</ion-footer>
+<app-footer></app-footer>

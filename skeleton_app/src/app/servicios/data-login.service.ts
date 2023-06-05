@@ -7,6 +7,7 @@ export class DataLoginService {
 
   nombreUser: string = '';
   claveUser: number = 0;
+  tipoAccion: string = '';
 
   constructor() { }
 }

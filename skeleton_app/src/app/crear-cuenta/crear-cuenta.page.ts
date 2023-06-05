@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AlertController, NavController } from '@ionic/angular';
+import { format, parseISO } from 'date-fns';
+import { DataLoginService } from '../servicios/data-login.service';
 
 
 @Component({
@@ -8,9 +12,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CrearCuentaPage implements OnInit {
 
-  constructor() { }
+  constructor(private tipoAccionUser: DataLoginService) {}
 
   ngOnInit() {
+    this.tipoAccionUser.tipoAccion = 'crear';
   }
 
 }

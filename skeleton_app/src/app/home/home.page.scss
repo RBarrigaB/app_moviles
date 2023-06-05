@@ -37,3 +37,11 @@ font-size: 250%;
 ion-content {
   height: 200%;
 }
+
+ion-button {
+  width: 100%;
+}
+
+ion-row, ion-button,ion-content,main {
+  background: #000;
+}

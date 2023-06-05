@@ -14,7 +14,7 @@ export class LoginPage implements OnInit {
   loginForm!: FormGroup;
 
   constructor(public fb: FormBuilder, public alertController: AlertController, 
-              public navCtrl: NavController, public dataLogin: DataLoginService) {
+              public navCtrl: NavController, public dataLogin: DataLoginService, public tipoAccionLogin:DataLoginService) {
 
     this.loginForm = this.fb.group({
       'user': new FormControl("", Validators.required),
@@ -47,11 +47,28 @@ export class LoginPage implements OnInit {
       await alert.present();
       return;
     } else {
-      this.dataLogin.nombreUser = form.user;
-      this.dataLogin.claveUser = form.password;
-      this.navCtrl.navigateRoot('home')
+
+      let usuarioLocal = localStorage.getItem('usuario');
+      let infoUsuario = JSON.parse(usuarioLocal!);
+
+      if(form.user === infoUsuario.nombreUsuario && form.password === infoUsuario.clave) {
+        this.dataLogin.nombreUser = infoUsuario.nombreUsuario;
+        this.dataLogin.claveUser = infoUsuario.clave;
+        this.navCtrl.navigateRoot('home')
+      } else {
+        const alert = await this.alertController.create({
+          header: 'Error de login',
+          message: 'Usuario o contraseña no se encuentran registrados. Por favor, verifique su información o cree una cuenta e inténtelo nuevamente',
+          buttons: ['Aceptar']
+        });
+        await alert.present();
+        return;
+      }
     }
   }
 
+  nuevaCuenta() {
+    this.tipoAccionLogin.tipoAccion = 'crear';
+  }
 
 }

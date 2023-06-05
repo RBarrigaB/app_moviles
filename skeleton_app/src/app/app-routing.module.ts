@@ -19,6 +19,14 @@ const routes: Routes = [
     path: 'crear-cuenta',
     loadChildren: () => import('./crear-cuenta/crear-cuenta.module').then( m => m.CrearCuentaPageModule)
   },
+  {
+    path: 'editar-informacion',
+    loadChildren: () => import('./editar-informacion/editar-informacion.module').then( m => m.EditarInformacionPageModule)
+  },
+  {
+    path: 'pokemon-fantasma-desc',
+    loadChildren: () => import('./pokemon-fantasma-desc/pokemon-fantasma-desc.module').then( m => m.PokemonFantasmaDescPageModule)
+  },
 ];
 
 @NgModule({

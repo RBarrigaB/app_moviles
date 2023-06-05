@@ -1,6 +1,7 @@
 import { Component, Input, Output,EventEmitter, OnInit } from '@angular/core';
 import { AlertController, Animation, AnimationController } from '@ionic/angular';
 import { DataLoginService } from '../servicios/data-login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,7 @@ export class HomePage implements OnInit {
   educacionUsuario:string = '';
 
   constructor(private dataLogin:DataLoginService, private animationCtrl: AnimationController
-    ,public alertController: AlertController) {}
+    ,public alertController: AlertController, private router: Router, public tipoAccion: DataLoginService) {}
 
   ngOnInit() {
     this.homeUser = this.dataLogin.nombreUser;
@@ -49,6 +50,19 @@ export class HomePage implements OnInit {
       buttons: ['Aceptar']
     });
     await alert.present();
+  }
+
+  goToPage(pageName:string){
+    if(pageName === '/editar-informacion') {
+      this.tipoAccion.tipoAccion = 'editar'
+    }
+    console.log(pageName)
+    this.router.navigate([`${pageName}`]);
+  }
+
+  logout(page:string) {
+    localStorage.setItem('usuario',JSON.stringify({}));
+    this.goToPage(page);
   }
 
 }
