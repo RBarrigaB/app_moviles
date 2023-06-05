@@ -80,7 +80,7 @@
   <ion-row class="ion-padding-top">
     <ion-col class="ion-text-center">
       <ion-button type="submit" class="ion-padding-end ion-margin-end" color="tertiary"
-        expand="inline" (click)="validUser(tipoAccExt)">{{nombreBtn}}</ion-button>
+        expand="inline" (click)="validUser(tipoAccExt)">{{nombreBtn | titlecase}}</ion-button>
       <ion-button type="submit" class="ion-padding-start ion-margin-start" color="tertiary"
         expand="inline" (click) = "goToPage(redireccion)" >Cancelar</ion-button>
     </ion-col>
