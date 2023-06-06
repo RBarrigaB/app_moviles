@@ -1,0 +1,43 @@
+
+  <app-header></app-header>
+
+<ion-content [fullscreen]="true" class="ion-content-fullscreen">
+  <ion-header class="ion-padding-bottom">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <h1 class="ion-padding-top ion-text-center">Bienvenido!</h1>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="ion-padding-start">
+          <ion-item lines="none">Usuario: {{homeUser | titlecase}}</ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <h2 class="ion-text-center">¿Qué te gustaría hacer?</h2>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-header>
+    <ion-row class="ion-padding ion-text-center">
+        <ion-button fill="outline" color="tertiary" (click)="goToPage('/editar-informacion')">
+          Editar mi información
+          <ion-icon slot="end" name="create" color="tertiary"></ion-icon>
+        </ion-button>
+      </ion-row>
+      <ion-row class="ion-padding ion-text-center">
+        <ion-button color="tertiary" (click)="goToPage('/pokemon-fantasma-desc')">
+          <ion-icon name="logo-snapchat" slot="end"></ion-icon>
+          Ver información de pokemon fantasma
+        </ion-button>
+      </ion-row>
+      <ion-row class="ion-padding ion-text-center">
+        <ion-button color="tertiary" (click)="logout('/login')">
+          <ion-icon name="log-out-outline"></ion-icon>
+          Salir
+        </ion-button>
+      </ion-row>
+</ion-content>
+<app-footer></app-footer>

@@ -1,0 +1,7 @@
+{
+  "name": "pokeghost_app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
