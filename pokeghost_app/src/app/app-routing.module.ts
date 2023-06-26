@@ -9,23 +9,31 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
   },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
     path: 'crear-cuenta',
-    loadChildren: () => import('./crear-cuenta/crear-cuenta.module').then( m => m.CrearCuentaPageModule)
+    loadChildren: () => import('./pages/crear-cuenta/crear-cuenta.module').then( m => m.CrearCuentaPageModule)
   },
   {
     path: 'editar-informacion',
-    loadChildren: () => import('./editar-informacion/editar-informacion.module').then( m => m.EditarInformacionPageModule)
+    loadChildren: () => import('./pages/editar-informacion/editar-informacion.module').then( m => m.EditarInformacionPageModule)
   },
   {
     path: 'pokemon-fantasma-desc',
-    loadChildren: () => import('./pokemon-fantasma-desc/pokemon-fantasma-desc.module').then( m => m.PokemonFantasmaDescPageModule)
+    loadChildren: () => import('./pages/pokemon-fantasma-desc/pokemon-fantasma-desc.module').then( m => m.PokemonFantasmaDescPageModule)
+  },
+  {
+    path: 'modificar',
+    loadChildren: () => import('./pages/modificar/modificar.module').then( m => m.ModificarPageModule)
+  },
+  {
+    path: 'registros',
+    loadChildren: () => import('./pages/registros/registros.module').then( m => m.RegistrosPageModule)
   },
 ];
 

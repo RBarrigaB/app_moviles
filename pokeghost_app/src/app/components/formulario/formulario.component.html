@@ -5,7 +5,8 @@
         <ion-label>Nombre</ion-label>
       </ion-col>
       <ion-col>
-        <ion-input type="text" placeholder="Ingrese Nombre" formControlName="nombre" 
+        <ion-input type="text" 
+        placeholder="Ingrese Nombre" formControlName="nombre" 
         pattern="^[a-zA-Z0-9_]+$" [(ngModel)]="getUser.nombre"
         required>
         </ion-input>
@@ -16,7 +17,8 @@
         <ion-label>Apellido</ion-label>
       </ion-col>
       <ion-col>
-        <ion-input type="text" placeholder="Ingrese Apellido" formControlName="apellido" 
+        <ion-input type="text" 
+        placeholder="Ingrese Apellido" formControlName="apellido" 
         pattern="^[a-zA-Z0-9_]+$" [(ngModel)]="getUser.apellido"
         required></ion-input>
       </ion-col>
@@ -26,8 +28,20 @@
         <ion-label>Nombre de usuario</ion-label>
       </ion-col>
       <ion-col>
-        <ion-input type="text" placeholder="Ingrese Nickname" formControlName="nombreUsuario" minlength="3"
+        <ion-input type="text" 
+        placeholder="Ingrese Nickname" formControlName="nombreUsuario" minlength="3"
         maxlength="8" pattern="^[a-zA-Z0-9_]+$" [(ngModel)]="getUser.nombreUsuario"
+         required></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="ion-padding-start ion-margin-start elem-animado">
+        <ion-label>Correo electrónico</ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-input type="text" 
+        placeholder="Ingrese correo electrónico" formControlName="correoUsuario"
+        pattern="^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$" [(ngModel)]="getUser.correoUsuario"
          required></ion-input>
       </ion-col>
     </ion-row>
@@ -36,7 +50,8 @@
         <ion-label>Password</ion-label>
       </ion-col>
       <ion-col>
-        <ion-input type="text" placeholder="Ingrese su clave" formControlName="clave" 
+        <ion-input type="text" 
+        placeholder="Ingrese su clave" formControlName="clave" 
         pattern="^[0-9]{4}$" minlength="4" [(ngModel)]="getUser.clave"
         maxlength="4" required></ion-input>
       </ion-col>
@@ -46,7 +61,7 @@
         <ion-label>Profesión</ion-label>
       </ion-col>
       <ion-col class="ion-padding-start">
-        <ion-select placeholder="Profesión" formControlName="educacionUsuario"
+        <ion-select placeholder="Profesión"  formControlName="educacionUsuario"
         [(ngModel)]="getUser.educacion">
           <ion-select-option value="basica">Básica</ion-select-option>
           <ion-select-option value="media">Media</ion-select-option>
@@ -58,15 +73,17 @@
       <ion-col class="ion-padding-start ion-margin-start elem-animado">
         <ion-label>Fecha Nacimiento</ion-label>
       </ion-col>
-      <ion-col class="">
+      <ion-col>
         <ion-row>
           <ion-col>
             <ion-datetime-button datetime="datetime" id="input_date"></ion-datetime-button>
             <ion-modal [keepContentsMounted]="true">
               <ng-template>
-                <ion-datetime #dateVal id="datetime" [presentation]="'date'" 
-                (ionChange)="dateValue(dateVal.value)"
-                ></ion-datetime>
+                <ion-datetime
+                [showDefaultButtons]="true" 
+                [value]="fechaNacInicial"  
+                #dateVal id="datetime" [presentation]="'date'" 
+                (ionChange)="dateValue(dateVal.value)"></ion-datetime>
               </ng-template>
             </ion-modal>
           </ion-col>

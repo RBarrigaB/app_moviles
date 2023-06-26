@@ -4,7 +4,7 @@ import { HeaderComponent } from './header/header.component';
 import { IonicModule } from '@ionic/angular';
 import { FooterComponent } from './footer/footer.component';
 import { FormularioComponent } from './formulario/formulario.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 
@@ -12,7 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [
     HeaderComponent,
     FooterComponent,
-    FormularioComponent
+    FormularioComponent,    
   ],
   exports: [
     HeaderComponent,
@@ -22,7 +22,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     IonicModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class ComponentsModule { }
