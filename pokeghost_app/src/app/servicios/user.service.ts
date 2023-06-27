@@ -10,9 +10,13 @@ export class UserService {
 
   constructor(private firestore: Firestore) {}
   //Crear usuario
-  addUser(user: Usuario) {
+  async addUser(user: Usuario) {
     const userRef = collection(this.firestore,'Usuarios');
-    return addDoc(userRef, user).catch(error => console.log('Error: ',error));
+    try {
+      return await addDoc(userRef, user);
+    } catch (error) {
+      return console.log('Error: ', error);
+    }
   }
   //Traer lista de usuarios  
   getUsers(): Observable<Usuario[]>{
@@ -25,15 +29,23 @@ export class UserService {
     return docData(userRef);
   }
   //Actualizar usuario
-  updateUser(user: Usuario) {
+  async updateUser(user: Usuario) {
     const userRef = doc(this.firestore,`Usuarios/${user.id}`);
     const userToUpdate = { ...user };
-    return updateDoc(userRef,userToUpdate).catch(error => console.log('Error: ',error));
+    try {
+      return await updateDoc(userRef, userToUpdate);
+    } catch (error) {
+      return console.log('Error: ', error);
+    }
   }
   //Eliminar usuario
-  deleteUser(user: Usuario) {
+  async deleteUser(user: Usuario) {
     const userRef = doc(this.firestore,`Usuarios/${user.id}`)
-    return deleteDoc(userRef).catch(error => console.log('Error: ',error));
+    try {
+      return await deleteDoc(userRef);
+    } catch (error) {
+      return console.log('Error: ', error);
+    }
   }
 
 }

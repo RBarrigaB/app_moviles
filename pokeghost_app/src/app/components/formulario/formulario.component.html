@@ -7,7 +7,7 @@
       <ion-col>
         <ion-input type="text" 
         placeholder="Ingrese Nombre" formControlName="nombre" 
-        pattern="^[a-zA-Z0-9_]+$" [(ngModel)]="getUser.nombre"
+        pattern="^[a-zA-Z ]+$" [(ngModel)]="getUser.nombre"
         required>
         </ion-input>
       </ion-col>
@@ -19,7 +19,7 @@
       <ion-col>
         <ion-input type="text" 
         placeholder="Ingrese Apellido" formControlName="apellido" 
-        pattern="^[a-zA-Z0-9_]+$" [(ngModel)]="getUser.apellido"
+        pattern="^[a-zA-Z ]+$" [(ngModel)]="getUser.apellido"
         required></ion-input>
       </ion-col>
     </ion-row>
@@ -30,7 +30,7 @@
       <ion-col>
         <ion-input type="text" 
         placeholder="Ingrese Nickname" formControlName="nombreUsuario" minlength="3"
-        maxlength="8" pattern="^[a-zA-Z0-9_]+$" [(ngModel)]="getUser.nombreUsuario"
+        maxlength="8" pattern="^[a-zA-Z0-9_ ]+$" [(ngModel)]="getUser.nombreUsuario"
          required></ion-input>
       </ion-col>
     </ion-row>
@@ -52,8 +52,8 @@
       <ion-col>
         <ion-input type="text" 
         placeholder="Ingrese su clave" formControlName="clave" 
-        pattern="^[0-9]{4}$" minlength="4" [(ngModel)]="getUser.clave"
-        maxlength="4" required></ion-input>
+        pattern="^[a-zA-Z0-9_ ]{6}$" minlength="6" [(ngModel)]="getUser.clave"
+        maxlength="6" required></ion-input>
       </ion-col>
     </ion-row>
     <ion-row>
@@ -83,7 +83,11 @@
                 [showDefaultButtons]="true" 
                 [value]="fechaNacInicial"  
                 #dateVal id="datetime" [presentation]="'date'" 
-                (ionChange)="dateValue(dateVal.value)"></ion-datetime>
+                (ionChange)="dateValue(dateVal.value)"
+                (ionCancel) = "dateVal.reset()"
+                (ionDone) = "dateVal.confirm()"
+                doneText="Aceptar"
+                cancelText="Cancelar"></ion-datetime>
               </ng-template>
             </ion-modal>
           </ion-col>
@@ -99,7 +103,7 @@
       <ion-button type="submit" class="ion-padding-end ion-margin-end" color="tertiary"
         expand="inline" (click)="validUser(tipoAccExt)">{{nombreBtn | titlecase}}</ion-button>
       <ion-button type="submit" class="ion-padding-start ion-margin-start" color="tertiary"
-        expand="inline" (click) = "goToPage(redireccion)" >Cancelar</ion-button>
+        expand="inline" (click) = "cancel()" >Cancelar</ion-button>
     </ion-col>
   </ion-row>
 </form>

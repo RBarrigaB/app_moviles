@@ -4,6 +4,8 @@ import { AlertController, NavController } from '@ionic/angular';
 import { DataLoginService } from '../../servicios/data-login.service';
 import { UserService } from 'src/app/servicios/user.service';
 import Usuario from 'src/app/interfaces/user.interface';
+import { AuthenticationService } from 'src/app/servicios/authentication.service';
+import SessionUser from 'src/app/interfaces/sessionUser.interface';
 
 
 @Component({
@@ -14,14 +16,11 @@ import Usuario from 'src/app/interfaces/user.interface';
 export class LoginPage implements OnInit {
 
   loginForm!: FormGroup;
-  loginInfo = {
-    "email": "",
-    "password": ""
-  };
+  loginInfo = {} as SessionUser;
 
   constructor(public fb: FormBuilder, public alertController: AlertController,
     public navCtrl: NavController, public dataLogin: DataLoginService, public tipoAccionLogin: DataLoginService,
-    private userService: UserService) {
+    private userService: UserService, private authService: AuthenticationService) {
 
     this.loginForm = this.fb.group({
       'email': new FormControl("", Validators.required),
@@ -42,7 +41,7 @@ export class LoginPage implements OnInit {
         mensaje = 'Correo inválido. El correo electrónico debe ser en formato test@test.cl'
       } else {
         if (this.loginForm.get('password')?.invalid) {
-          mensaje = 'Contraseña inválida. La contraseña debe tener 4 dígitos'
+          mensaje = 'Contraseña inválida. La contraseña debe tener 6 caracteres'
         }
       }
 
@@ -54,26 +53,23 @@ export class LoginPage implements OnInit {
       await alert.present();
       return;
     } else {
-
-      let databaseUser = {} as Usuario;
-      this.userService.getUsers().subscribe(async users => {
-        databaseUser = users[users.findIndex(usr => usr.correoUsuario === form.email)];
-        if (form.email === databaseUser.correoUsuario && form.password === databaseUser.clave) {
-          this.loginInfo.email = form.email;
-          this.loginInfo.password = form.password;
+          this.loginInfo.correoUsuario = form.email;
+          this.loginInfo.clave = form.password;
+          let loginCheck = this.authService.login(this.loginInfo)
+          console.log(this.authService.authenticationState())
+        if (await loginCheck) {
           localStorage.setItem('usuario', JSON.stringify(this.loginInfo));
           this.navCtrl.navigateRoot('home')
         } else {
           document.querySelectorAll('ion-input').forEach(input => { input.value = "" })
           const alert = await this.alertController.create({
             header: 'Error de login',
-            message: 'Correo electrónico o contraseña no se encuentran registrados. Por favor, verifique su información o cree una cuenta e inténtelo nuevamente',
+            message: 'Correo electrónico o contraseña son incorrectos. Por favor, verifique su información o cree una cuenta e inténtelo nuevamente',
             buttons: ['Aceptar']
           });
           await alert.present();
           return;
         }
-      })
     }
   }
 

@@ -9,5 +9,5 @@ export class DataLoginService {
   claveUser: number = 0;
   tipoAccion: string = '';
 
-  constructor() { }
+  constructor() {}
 }
