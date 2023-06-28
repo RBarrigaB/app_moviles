@@ -2,12 +2,13 @@
   <app-header></app-header>
 
 <ion-content [fullscreen]="true"  class="ion-content-fullscreen">
-  <ion-header class="ion-padding-bottom">
     <ion-grid>
-      <ion-row>
+      <ion-row class="ion-padding">
         <ion-col>
           <h1 class="ion-padding-top ion-text-center">Bienvenido!</h1>
-
+        </ion-col>
+        <ion-col>
+          <img src="../../../assets/images/welcome.png" alt="Imagen bienvenida" id="home_img">
         </ion-col>
       </ion-row>
       <ion-row>
@@ -21,7 +22,6 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-  </ion-header>
     <ion-row class="ion-padding ion-text-center">
         <ion-button color="tertiary" (click)="goToPage('/editar-informacion')" id="editBtn">
           Editar mi información
