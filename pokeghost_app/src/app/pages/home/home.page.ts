@@ -6,6 +6,7 @@ import { UserService } from 'src/app/servicios/user.service';
 import Usuario from 'src/app/interfaces/user.interface';
 import { AuthenticationService } from 'src/app/servicios/authentication.service';
 import { CameraService } from 'src/app/servicios/camera.service';
+import { AuthGuardService } from 'src/app/servicios/auth-guard.service';
 
 @Component({
   selector: 'app-home',
@@ -24,7 +25,7 @@ export class HomePage implements OnInit {
   constructor(private dataLogin: DataLoginService
     , public alertController: AlertController, private router: Router, public tipoAccion: DataLoginService,
     public navCtrl: NavController, private userService: UserService, private authenticationService: AuthenticationService,
-    public cameraService: CameraService) { }
+    public cameraService: CameraService, private authGuardService: AuthGuardService) { }
 
   async alerta() {
     const alert = await this.alertController.create({
@@ -45,7 +46,7 @@ export class HomePage implements OnInit {
     let infoUser = JSON.parse(localStorage.getItem('usuario')!);
     await this.getUserByMail(infoUser.correoUsuario);
     this.homeUser = this.usuario.nombreUsuario;
-
+    this.authGuardService.sessionStatus();
   }
 
   async infoUsuario() {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import PokemonInfo from 'src/app/interfaces/pokemon-info.interface';
+import { AuthGuardService } from 'src/app/servicios/auth-guard.service';
 import { ConsumoAPIService } from 'src/app/servicios/consumo-api.service';
 import { environment } from 'src/environments/environment.prod';
 
@@ -15,10 +16,11 @@ export class PokemonDetallesPage implements OnInit {
   pokemonInfo = {} as PokemonInfo;
   image_not_found: string = 'pokeghost_app\src\assets\images\default_pokemon.png'
 
-  constructor(private pokemonService: ConsumoAPIService, private router:Router) { }
+  constructor(private pokemonService: ConsumoAPIService, private router:Router, private authGuardService: AuthGuardService) { }
 
   ngOnInit() {
     this.storeInfoPokemon()
+    this.authGuardService.sessionStatus();
   }
 
   storeInfoPokemon() {

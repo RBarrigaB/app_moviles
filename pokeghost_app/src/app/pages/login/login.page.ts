@@ -56,7 +56,6 @@ export class LoginPage implements OnInit {
           this.loginInfo.correoUsuario = form.email;
           this.loginInfo.clave = form.password;
           let loginCheck = this.authService.login(this.loginInfo)
-          console.log(this.authService.authenticationState())
         if (await loginCheck) {
           localStorage.setItem('usuario', JSON.stringify(this.loginInfo));
           this.navCtrl.navigateRoot('home')

@@ -9,6 +9,7 @@ import Usuario from 'src/app/interfaces/user.interface'
 import { AuthenticationService } from 'src/app/servicios/authentication.service';
 import SessionUser from 'src/app/interfaces/sessionUser.interface';
 import { firstValueFrom, lastValueFrom } from 'rxjs';
+import { AuthGuardService } from 'src/app/servicios/auth-guard.service';
 
 @Component({
   selector: 'app-formulario',
@@ -28,6 +29,8 @@ export class FormularioComponent implements OnInit {
   newUser = {} as Usuario;
   getUser = {} as Usuario;
   userSession = {} as SessionUser;
+  oldPassword = '';
+  oldMail = '';
 
   constructor(public fb: FormBuilder, public navCtrl: NavController, public alertController: AlertController, private tipoAccionUser: DataLoginService,
     private router: Router, private userService: UserService, private authService: AuthenticationService) {
@@ -89,70 +92,76 @@ export class FormularioComponent implements OnInit {
       return;
 
     } else {
-        if (Object.keys(this.getUser).length > 0 && tipoAccion === 'editar') {
-          this.getUser.nombre = this.userForm.get('nombre')?.value;
-          this.getUser.apellido = this.userForm.get('apellido')?.value;
-          this.getUser.nombreUsuario = this.userForm.get('nombreUsuario')?.value;
-          this.getUser.correoUsuario = this.userForm.get('correoUsuario')?.value;
-          this.getUser.clave = this.userForm.get('clave')?.value;
-          this.getUser.educacion = this.userForm.get('educacionUsuario')?.value;
-          this.getUser.fechaNac = this.fechaSave(this.fechaNacInicial)!;
-          this.userService.updateUser(this.getUser);
-          this.authService.updateMailSessionUser(this.getUser.correoUsuario);
-          this.authService.updatePasswordSessionUser(this.getUser.clave);
-          localStorage.setItem('usuario', JSON.stringify(this.getUser));
-          headerOk = 'editar';
-        } else if (Object.keys(this.newUser).length === 0 && tipoAccion === 'crear') {
-          await this.getUserByMail(this.userForm.get('correoUsuario')?.value);
-           userExist = this.userEncontrado;
-          if(userExist !== null && userExist !== undefined) {
-              if (Object.keys(userExist).length > 0) {
-                headerOk = '';
-              }
-            }   else {
-              document.querySelector('ion-datetime')?.reset()
-              this.newUser.nombre = this.userForm.get('nombre')?.value;
-              this.newUser.apellido = this.userForm.get('apellido')?.value;
-              this.newUser.nombreUsuario = this.userForm.get('nombreUsuario')?.value;
-              this.newUser.correoUsuario = this.userForm.get('correoUsuario')?.value;
-              this.newUser.clave = this.userForm.get('clave')?.value;
-              this.newUser.educacion = this.userForm.get('educacionUsuario')?.value;
-              this.newUser.fechaNac = this.fechaSave(this.fechaNacInicial)!;
-              this.userService.addUser(this.newUser);
-              localStorage.setItem('usuario', JSON.stringify(this.newUser));
-              this.userSession.correoUsuario = this.newUser.correoUsuario;
-              this.userSession.clave = this.newUser.clave;
-              this.authService.crearSessionUser(this.userSession);
-              this.newUser = {} as Usuario;
-              headerOk = 'crear';
-            }
+      if (Object.keys(this.getUser).length > 0 && tipoAccion === 'editar') {
+        this.getUser.nombre = this.userForm.get('nombre')?.value;
+        this.getUser.apellido = this.userForm.get('apellido')?.value;
+        this.getUser.nombreUsuario = this.userForm.get('nombreUsuario')?.value;
+        this.getUser.correoUsuario = this.userForm.get('correoUsuario')?.value;
+        this.getUser.clave = this.userForm.get('clave')?.value;
+        this.getUser.educacion = this.userForm.get('educacionUsuario')?.value;
+        this.getUser.fechaNac = this.fechaSave(this.fechaNacInicial)!;
+        this.userService.updateUser(this.getUser);
+        if (this.oldMail !== this.getUser.correoUsuario) {
+          await this.authService.updateMailSessionUser(this.getUser.correoUsuario);
+          this.authService.logout();
         }
-        if (headerOk !== '') {
-          headerOk = tipoAccion === 'crear' ? 'Usuario creado correctamente' : tipoAccion === 'editar' ? 'Usuario actualizado correctamente' : '';
-          const alert = await this.alertController.create({
-            header: headerOk,
-            buttons: [
-              {
-                text: 'Aceptar',
-                handler: () => {
-                  this.redirect(true, tipoAccion);
-                }
-              }]
-          });
-          await alert.present();
+        if (this.oldPassword !== this.getUser.clave) {
+          await this.authService.updatePasswordSessionUser(this.getUser.clave);
+          this.authService.logout();
+        }
+        localStorage.setItem('usuario', JSON.stringify(this.getUser));
+        headerOk = 'editar';
+      } else if (Object.keys(this.newUser).length === 0 && tipoAccion === 'crear') {
+        await this.getUserByMail(this.userForm.get('correoUsuario')?.value);
+        userExist = this.userEncontrado;
+        if (userExist !== null && userExist !== undefined) {
+          if (Object.keys(userExist).length > 0) {
+            headerOk = '';
+          }
         } else {
-          const alert = await this.alertController.create({
-            header: 'El correo ingresado ya existe, favor ingrese otro correo e inténtelo nuevamente',
-            buttons: [
-              {
-                text: 'Aceptar',
-                handler: () => {
-                  alert.dismiss()
-                }
-              }]
-          });
-          await alert.present();
+          document.querySelector('ion-datetime')?.reset()
+          this.newUser.nombre = this.userForm.get('nombre')?.value;
+          this.newUser.apellido = this.userForm.get('apellido')?.value;
+          this.newUser.nombreUsuario = this.userForm.get('nombreUsuario')?.value;
+          this.newUser.correoUsuario = this.userForm.get('correoUsuario')?.value;
+          this.newUser.clave = this.userForm.get('clave')?.value;
+          this.newUser.educacion = this.userForm.get('educacionUsuario')?.value;
+          this.newUser.fechaNac = this.fechaSave(this.fechaNacInicial)!;
+          this.userService.addUser(this.newUser);
+          localStorage.setItem('usuario', JSON.stringify(this.newUser));
+          this.userSession.correoUsuario = this.newUser.correoUsuario;
+          this.userSession.clave = this.newUser.clave;
+          this.authService.crearSessionUser(this.userSession);
+          this.newUser = {} as Usuario;
+          headerOk = 'crear';
         }
+      }
+      if (headerOk !== '') {
+        headerOk = tipoAccion === 'crear' ? 'Usuario creado correctamente' : tipoAccion === 'editar' ? 'Usuario actualizado correctamente' : '';
+        const alert = await this.alertController.create({
+          header: headerOk,
+          buttons: [
+            {
+              text: 'Aceptar',
+              handler: () => {
+                this.redirect(true, tipoAccion);
+              }
+            }]
+        });
+        await alert.present();
+      } else {
+        const alert = await this.alertController.create({
+          header: 'El correo ingresado ya existe, favor ingrese otro correo e inténtelo nuevamente',
+          buttons: [
+            {
+              text: 'Aceptar',
+              handler: () => {
+                alert.dismiss()
+              }
+            }]
+        });
+        await alert.present();
+      }
     }
   }
 
@@ -172,10 +181,10 @@ export class FormularioComponent implements OnInit {
       });
     });
   }
-  
+
 
   cancel() {
-    if(this.tipoAccionUser.tipoAccion === 'crear') {
+    if (this.tipoAccionUser.tipoAccion === 'crear') {
       this.userForm.reset();
       this.goToPage('/login')
     } else if (this.tipoAccionUser.tipoAccion === 'editar') {
@@ -193,16 +202,19 @@ export class FormularioComponent implements OnInit {
     this.tipoAccExt = this.tipoAccionUser.tipoAccion;
     if (this.tipoAccionUser.tipoAccion === 'editar') {
       let sessionUser = JSON.parse(localStorage.getItem('usuario')!);
-        await this.getUserByMail(sessionUser.correoUsuario)
-        this.getUser = this.userEncontrado;
-        if (this.getUser.fechaNac) {
-          let initialFormatDate = this.getUser.fechaNac.split("/");
-          let finalFormatDate = initialFormatDate[2] + '-' + initialFormatDate[1] + '-' + initialFormatDate[0]
-          const date = new Date(finalFormatDate);
-          if (!isNaN(date.getTime())) {
-            this.fechaNacInicial = date.toISOString();
-          }
+      console.log(sessionUser)
+      await this.getUserByMail(sessionUser.correoUsuario);
+      this.getUser = this.userEncontrado;
+      this.oldPassword = this.getUser.clave;
+      this.oldMail = this.getUser.correoUsuario;
+      if (this.getUser.fechaNac) {
+        let initialFormatDate = this.getUser.fechaNac.split("/");
+        let finalFormatDate = initialFormatDate[2] + '-' + initialFormatDate[1] + '-' + initialFormatDate[0]
+        const date = new Date(finalFormatDate);
+        if (!isNaN(date.getTime())) {
+          this.fechaNacInicial = date.toISOString();
         }
+      }
     }
     this.redireccion = this.tipoAccionUser.tipoAccion === 'crear' ? '/login' :
       this.tipoAccionUser.tipoAccion === 'editar' ? '/home' : '';

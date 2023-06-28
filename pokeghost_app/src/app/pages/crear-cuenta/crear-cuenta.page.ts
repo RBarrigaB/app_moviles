@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Animation, AnimationController} from '@ionic/angular';
 import { DataLoginService } from '../../servicios/data-login.service';
+import { AuthGuardService } from 'src/app/servicios/auth-guard.service';
 
 
 @Component({
