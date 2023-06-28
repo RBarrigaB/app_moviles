@@ -86,12 +86,13 @@ export class HomePage implements OnInit {
                 handler: async () => {
                   this.userService.deleteUser(this.usuario);
                   const alert = await this.alertController.create({
-                    header: 'Usuario eliminar correctamente',
+                    header: 'Usuario eliminado correctamente',
                     buttons: [
                       {
                         text: 'Aceptar',
                         handler: () => {
                           this.userService.deleteUser(this.usuario);
+                          this.authenticationService.deleteSessionUser();
                           this.goToPage(page)
                         }
                       }]
