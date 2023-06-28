@@ -98,6 +98,8 @@ export class FormularioComponent implements OnInit {
           this.getUser.educacion = this.userForm.get('educacionUsuario')?.value;
           this.getUser.fechaNac = this.fechaSave(this.fechaNacInicial)!;
           this.userService.updateUser(this.getUser);
+          this.authService.updateMailSessionUser(this.getUser.correoUsuario);
+          this.authService.updatePasswordSessionUser(this.getUser.clave);
           localStorage.setItem('usuario', JSON.stringify(this.getUser));
           headerOk = 'editar';
         } else if (Object.keys(this.newUser).length === 0 && tipoAccion === 'crear') {
