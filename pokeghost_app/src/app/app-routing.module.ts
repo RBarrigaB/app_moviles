@@ -32,8 +32,8 @@ const routes: Routes = [
     canActivate: [AuthGuardService]
   },
   {
-    path: 'registros',
-    loadChildren: () => import('./pages/registros/registros.module').then( m => m.RegistrosPageModule),
+    path: 'pokemon-detalles',
+    loadChildren: () => import('./pages/pokemon-detalles/pokemon-detalles.module').then( m => m.PokemonDetallesPageModule),
     canActivate: [AuthGuardService]
   },
 ];

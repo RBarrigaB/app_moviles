@@ -65,14 +65,11 @@ export class HomePage implements OnInit {
     this.router.navigate([`${pageName}`]);
   }
 
-  deleteAccount(page: string) {
+  async deleteAccount(page: string) {
     let sessionUser = JSON.parse(localStorage.getItem('usuario')!)
-    let deleteUser = {} as Usuario
     let header = '¿Estás seguro que deseas eliminar su cuenta?. Toma en cuenta que este proceso no es reversible'
-    if (sessionUser) {
-      this.userService.getUsers().subscribe(async users => {
-        deleteUser = users[users.findIndex(usr => usr.correoUsuario === sessionUser.email)];
-        if (deleteUser) {
+    await this.getUserByMail(sessionUser.correoUsuario);
+        if (this.usuario) {
           const alert = await this.alertController.create({
             header: header,
             buttons: [
@@ -84,16 +81,25 @@ export class HomePage implements OnInit {
               },
               {
                 text: 'Aceptar',
-                handler: () => {
-                  this.userService.deleteUser(deleteUser);
-                  this.goToPage(page)
+                handler: async () => {
+                  this.userService.deleteUser(this.usuario);
+                  const alert = await this.alertController.create({
+                    header: 'Usuario eliminar correctamente',
+                    buttons: [
+                      {
+                        text: 'Aceptar',
+                        handler: () => {
+                          this.userService.deleteUser(this.usuario);
+                          this.goToPage(page)
+                        }
+                      }]
+                  });
+                  await alert.present();
                 }
               }]
           });
           await alert.present();
         }
-      })
-    }
   }
 
   getUserByMail(correo: string) {

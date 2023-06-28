@@ -1,0 +1,29 @@
+ion-row {
+    width: 100%;
+}
+ion-card {
+    width: 100%;
+    background-color: #700b70;
+}
+
+h3 {
+    color: #fff;
+}
+
+ion-card-content {
+    color: #fff;
+}
+
+h1 {
+    text-align: justify;
+}
+
+ion-content{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#bottomButtons {
+    padding-bottom: 12em;
+}

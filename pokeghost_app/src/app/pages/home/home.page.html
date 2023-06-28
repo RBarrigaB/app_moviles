@@ -22,25 +22,31 @@
     </ion-grid>
   </ion-header>
     <ion-row class="ion-padding ion-text-center">
-        <ion-button fill="outline" color="tertiary" (click)="goToPage('/editar-informacion')">
+        <ion-button color="tertiary" (click)="goToPage('/editar-informacion')" id="editBtn">
           Editar mi información
-          <ion-icon slot="end" name="create" color="tertiary"></ion-icon>
+          <ion-icon slot="start" name="create"></ion-icon>
         </ion-button>
       </ion-row>
       <ion-row class="ion-padding ion-text-center">
-        <ion-button color="tertiary" (click)="goToPage('/pokemon-fantasma-desc')">
-          <ion-icon name="logo-snapchat" slot="end"></ion-icon>
-          Ver información de pokemon fantasma
+        <ion-button color="tertiary" (click)="goToPage('/pokemon-fantasma-desc')" id="infoPokemon">
+          <ion-icon name="logo-snapchat" slot="start"></ion-icon>
+          Ver info de pokemon fantasma
+        </ion-button>
+      </ion-row>
+      <ion-row class="ion-padding ion-text-center">
+        <ion-button color="tertiary" (click)="goToPage('/pokemon-detalles')" id="listaPokemon">
+          <ion-icon name="logo-wechat" slot="start"></ion-icon>
+          Conocer los pokemon fantasma
         </ion-button>
       </ion-row>
       <ion-row class="ion-padding ion-text-center">
         <ion-button color="danger" (click)="deleteAccount('/login')">
-          <ion-icon name="logo-snapchat" slot="end"></ion-icon>
+          <ion-icon name="trash-outline" slot="start"></ion-icon>
           Eliminar mi cuenta
         </ion-button>
       </ion-row>
-      <ion-row class="ion-padding ion-text-center">
-        <ion-button color="tertiary" (click)="logout('/login')">
+      <ion-row class="ion-padding ion-text-center" id="endRow">
+        <ion-button color="tertiary" (click)="logout('/login')" id="outBtn">
           <ion-icon name="log-out-outline"></ion-icon>
           Salir
         </ion-button>

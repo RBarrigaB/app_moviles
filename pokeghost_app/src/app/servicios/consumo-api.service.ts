@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http'
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ export class ConsumoAPIService {
 
   constructor(private httpClient:HttpClient) {}
 
-  getPokemones() {
-    return this.httpClient.get('https://pokeapi.co/api/v2/pokemon')
+  getPokemones(nombrePokemon: string) {
+    return this.httpClient.get(environment.pokeApiURL + nombrePokemon)
   }
 }

@@ -11,7 +11,7 @@ import { AuthenticationService } from 'src/app/servicios/authentication.service'
 export class EditarInformacionPage implements OnInit {
 
   constructor(private tipoAccionUser: DataLoginService, public alertController: AlertController, public navCtrl: NavController,
-    private animationCtrl: AnimationController, private authenticationService: AuthenticationService) { }
+    private animationCtrl: AnimationController) { }
 
   async alerta() {
     const alert = await this.alertController.create({
