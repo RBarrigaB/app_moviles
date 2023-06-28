@@ -43,7 +43,6 @@ export class PokemonDetallesPage implements OnInit {
         this.pokemonInfo = {} as PokemonInfo;
       })
     })
-    console.log(this.listaPokemon)
   }
 
   goToPage(pageName: string) {

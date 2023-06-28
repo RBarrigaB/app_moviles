@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { UserService } from 'src/app/servicios/user.service';
 import Usuario from 'src/app/interfaces/user.interface';
 import { AuthenticationService } from 'src/app/servicios/authentication.service';
+import { CameraService } from 'src/app/servicios/camera.service';
 
 @Component({
   selector: 'app-home',
@@ -22,7 +23,8 @@ export class HomePage implements OnInit {
 
   constructor(private dataLogin: DataLoginService
     , public alertController: AlertController, private router: Router, public tipoAccion: DataLoginService,
-    public navCtrl: NavController, private userService: UserService, private authenticationService: AuthenticationService) { }
+    public navCtrl: NavController, private userService: UserService, private authenticationService: AuthenticationService,
+    public cameraService: CameraService) { }
 
   async alerta() {
     const alert = await this.alertController.create({
@@ -113,6 +115,10 @@ export class HomePage implements OnInit {
         reject(error);
       });
     });
+  }
+
+  takePhoto() {
+    this.cameraService.addPhoto();
   }
 
   logout(page: string) {
