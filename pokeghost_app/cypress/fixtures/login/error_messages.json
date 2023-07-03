@@ -1,0 +1,6 @@
+{
+    "alert_header": "Error de login",
+    "alert_body_formato_correo_invalido": "Correo inválido. El correo electrónico debe ser en formato test@test.cl",
+    "alert_body_formato_password_invalido":"Contraseña inválida. La contraseña debe tener 6 caracteres",
+    "alert_body_correo_o_password_invalidos": "Correo electrónico o contraseña son incorrectos. Por favor, verifique su información o cree una cuenta e inténtelo nuevamente"
+}

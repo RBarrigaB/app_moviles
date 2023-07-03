@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertController, NavController } from '@ionic/angular';
 import { DataLoginService } from '../../servicios/data-login.service';
-import { UserService } from 'src/app/servicios/user.service';
-import Usuario from 'src/app/interfaces/user.interface';
-import { AuthenticationService } from 'src/app/servicios/authentication.service';
-import SessionUser from 'src/app/interfaces/sessionUser.interface';
+import { UserService } from '../../servicios/user.service';
+import { AuthenticationService } from '../../servicios/authentication.service';
+import SessionUser from '../../interfaces/sessionUser.interface';
 
 
 @Component({
@@ -35,7 +34,6 @@ export class LoginPage implements OnInit {
 
     let mensaje = ""
     var form = this.loginForm.value;
-
     if (this.loginForm.invalid) {
       if (this.loginForm.get('email')?.invalid) {
         mensaje = 'Correo inválido. El correo electrónico debe ser en formato test@test.cl'

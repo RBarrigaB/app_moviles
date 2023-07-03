@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, NavController } from '@ionic/angular';
 import { DataLoginService } from '../../servicios/data-login.service';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/servicios/user.service';
-import Usuario from 'src/app/interfaces/user.interface';
-import { AuthenticationService } from 'src/app/servicios/authentication.service';
-import { CameraService } from 'src/app/servicios/camera.service';
-import { AuthGuardService } from 'src/app/servicios/auth-guard.service';
+import { UserService } from '../../servicios/user.service';
+import Usuario from '../../interfaces/user.interface';
+import { AuthenticationService } from '../../servicios/authentication.service';
+import { CameraService } from '../../servicios/camera.service';
+import { AuthGuardService } from '../../servicios/auth-guard.service';
 
 @Component({
   selector: 'app-home',

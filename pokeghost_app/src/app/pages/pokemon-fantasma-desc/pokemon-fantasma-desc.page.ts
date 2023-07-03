@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, NavController } from '@ionic/angular';
-import { AuthGuardService } from 'src/app/servicios/auth-guard.service';
-import { AuthenticationService } from 'src/app/servicios/authentication.service';
+import { AuthGuardService } from '../../servicios/auth-guard.service';
+import { AuthenticationService } from '../../servicios/authentication.service';
 
 @Component({
   selector: 'app-pokemon-fantasma-desc',

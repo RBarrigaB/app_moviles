@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { environment } from 'src/environments/environment';
+import { environment } from '../environments/environment.prod';
 
 
 @Component({

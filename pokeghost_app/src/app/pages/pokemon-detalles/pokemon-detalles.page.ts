@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import PokemonInfo from 'src/app/interfaces/pokemon-info.interface';
-import { AuthGuardService } from 'src/app/servicios/auth-guard.service';
-import { ConsumoAPIService } from 'src/app/servicios/consumo-api.service';
-import { environment } from 'src/environments/environment.prod';
+import PokemonInfo from '../../interfaces/pokemon-info.interface';
+import { AuthGuardService } from '../../servicios/auth-guard.service';
+import { ConsumoAPIService } from '../../servicios/consumo-api.service';
+import { environment } from '../../../environments/environment.prod';
 
 @Component({
   selector: 'app-pokemon-detalles',

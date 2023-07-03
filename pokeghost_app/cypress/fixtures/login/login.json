@@ -1,0 +1,8 @@
+{
+    "label_email":"#email > label > div > div",
+    "label_password":"#password > label > div > div",
+    "input_email": "#email",
+    "input_password":"#password",
+    "btn_ingresar":"#btnIngresar",
+    "div_alert": "div.alert-wrapper"
+}

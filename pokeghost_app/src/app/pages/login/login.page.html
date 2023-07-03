@@ -24,23 +24,24 @@
         formControlName="email" 
         label="Correo electrónico" 
         labelPlacement="floating"
-        pattern="^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$"
+        pattern="^\w+@{1}[a-z]+\.[a-z]{2,3}$"
+        id="email"
         required></ion-input>
       </ion-item>
       <ion-item lines="inset">
         <ion-input
         minlength="6"
-        maxlength="6" 
         type="password" 
         formControlName="password" 
         label="Password" 
         labelPlacement="floating"
-        pattern="^[a-zA-Z0-9_ ]{6}$"
+        pattern="^[a-zA-Z0-9_ ]+$"
+        id="password"
         required></ion-input>
       </ion-item>
       <ion-row>
         <ion-col>
-          <ion-button type="submit" color="tertiary" expand="block" class="ion-margin" (click)="login()">Ingresar</ion-button>
+          <ion-button id="btnIngresar" type="submit" color="tertiary" expand="block" class="ion-margin" (click)="login()">Ingresar</ion-button>
           <ion-item lines="none">
             <a [routerLink]="['/crear-cuenta']" class="small-text ion-text-center" (click)="nuevaCuenta()">Crea tu cuenta gratis</a>
           </ion-item>

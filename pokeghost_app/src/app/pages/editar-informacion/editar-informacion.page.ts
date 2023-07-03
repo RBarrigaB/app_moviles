@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataLoginService } from '../../servicios/data-login.service';
 import { AlertController, Animation, AnimationController, NavController } from '@ionic/angular';
-import { AuthenticationService } from 'src/app/servicios/authentication.service';
-import { AuthGuardService } from 'src/app/servicios/auth-guard.service';
+import { AuthGuardService } from '../../servicios/auth-guard.service';
 
 @Component({
   selector: 'app-editar-informacion',

@@ -3,13 +3,13 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { AlertController, NavController } from '@ionic/angular';
 import { format, parseISO } from 'date-fns';
-import { DataLoginService } from 'src/app/servicios/data-login.service';
-import { UserService } from 'src/app/servicios/user.service';
-import Usuario from 'src/app/interfaces/user.interface'
-import { AuthenticationService } from 'src/app/servicios/authentication.service';
-import SessionUser from 'src/app/interfaces/sessionUser.interface';
+import { DataLoginService } from '../../servicios/data-login.service';
+import { UserService } from '../../servicios/user.service';
+import Usuario from '../../interfaces/user.interface'
+import { AuthenticationService } from '../../servicios/authentication.service';
+import SessionUser from '../../interfaces/sessionUser.interface';
 import { firstValueFrom, lastValueFrom } from 'rxjs';
-import { AuthGuardService } from 'src/app/servicios/auth-guard.service';
+import { AuthGuardService } from '../../servicios/auth-guard.service';
 
 @Component({
   selector: 'app-formulario',
