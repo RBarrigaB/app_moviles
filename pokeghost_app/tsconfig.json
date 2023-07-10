@@ -6,6 +6,7 @@
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "esModuleInterop": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": false,
     "noImplicitReturns": true,
@@ -22,16 +23,20 @@
       "es2018", 
       "dom"
     ],
-    "types":["jest"],
+    "types":["jest","node"],
     "useDefineForClassFields": false,
   },
   "exclude": [
-    "**/*.spec.ts"
+    "**/*.test.ts"
   ],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
-  }
+    "strictTemplates": true,
+    "fullTemplateTypeCheck":true
+  },
+  "include": ["src/**/*",
+  "**/*.spec.ts",
+  "**/*.test.ts"]
 }

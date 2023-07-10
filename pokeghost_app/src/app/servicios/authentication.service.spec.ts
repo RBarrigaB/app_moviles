@@ -2,19 +2,25 @@
 import { TestBed } from "@angular/core/testing";
 import { AuthenticationService } from "./authentication.service"
 import SessionUser from "../interfaces/sessionUser.interface";
-import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from "@angular/platform-browser-dynamic/testing";
+import { environment } from "../../environments/environment.prod";
+import 'jest-fetch-mock';
+import { initializeApp } from "@angular/fire/app";
+import { AngularFireModule } from "@angular/fire/compat";
 
 describe('login-service', () => {
     let authentication: AuthenticationService;
     let sessionUser = {} as SessionUser;
-    TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
 
-    beforeEach(() => {
-        TestBed.configureTestingModule({});
+
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+          imports: [initializeApp(environment.firebaseConfig), AngularFireModule],
+          providers: [AuthenticationService]
+        }).compileComponents();
         authentication = TestBed.inject(AuthenticationService);
-    });
+      });
 
-    it('Checking login response', () => {
+    it('Checking login response', async () => {
         let user_password = [
             {'email':'test','password':'test1233','login':false},
             {'email':'test@test.cl','password':'test1233','login':false},
@@ -28,7 +34,7 @@ describe('login-service', () => {
             sessionUser = {} as SessionUser;
             sessionUser.correoUsuario = session.email;
             sessionUser.clave = session.password;
-            expect(authentication.login(sessionUser)).toBe(session.login);
+            expect(await authentication.login(sessionUser)).toBe(session.login);
         }
     })
 })

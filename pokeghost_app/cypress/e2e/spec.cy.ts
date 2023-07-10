@@ -98,4 +98,17 @@ describe('Login page', () => {
       })
     })
   })
+
+  it('Testing login correcto y ver info de pokemon fantasma', function () {
+    cy.get('@loginData').then(function ($loginData) {
+      cy.get('@loginErrorMsg').then(function ($error_msg) {
+        cy.get($loginData.input_email).type('test3@test.cl')
+        cy.get($loginData.input_password).type('clav33')
+        cy.get($loginData.btn_ingresar).click()
+        cy.get('h1').should('be.visible').and('contain.text','Bienvenido!')
+        cy.get('ion-button').contains('Ver info de pokemon fantasma').click();
+        cy.get('h1').should('be.visible').and('contain.text','Los pokemon fantasma');
+      })
+    })
+  })
 })
