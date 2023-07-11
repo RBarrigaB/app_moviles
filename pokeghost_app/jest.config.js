@@ -4,9 +4,11 @@ module.exports = {
   setupFiles: ['<rootDir>/src/polyfills.ts'],
   setupFilesAfterEnv: ['<rootDir>/src/test.ts'],
   testPathIgnorePatterns: [
-    "<rootDir>/src/test.ts"
+    "<rootDir>/src/test.ts",
+    "<rootDir>/src - copia/test.ts",
   ],
   transform: {
-    '^.+\\.ts$': 'babel-jest'
+    '^.+\\.ts$': 'babel-jest',
+    '^.+\\.(ts|js|html)$': 'jest-preset-angular'
   }
 };
